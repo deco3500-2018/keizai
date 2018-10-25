@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>Gengo</title>
+
+        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="z-depth-1" id='chatbox' style='overflow:hidden'></div>
+
+
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <textarea id="message" class="materialize-textarea"></textarea>
+                    <label for="message">Message</label>
+                </div>
+            </div>
+
+            <button class="btn waves-effect waves-light" id="button1" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            <button class="btn waves-effect waves-light" id="button2" type="submit" name="action">Record Message
+            </button>
+
+        </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            // jQuery Document
+            
+            $(document).ready(function(){
+                var xhttp = new XMLHttpRequest();
+                var url = "response.php?name=Display";
+                xhttp.open("GET", url);
+                xhttp.send(null);
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 3) {
+                        var response = JSON.parse(xhttp.response);
+
+                        for (var i = 0; i < response.length; i += 2) {
+                            if (response[i] == "Meg") {
+                                if (response[i + 1] != "voicemessage") {
+                                    $( "#chatbox" ).append( "<div class = 'test' ><img src='Megumi.jpg' alt='Avatar' style='width:5%;'> " + response[i + 1] + "</div>" );
+                                } else {
+                                $( "#chatbox" ).append( "<div class = 'test'><img src='Megumi.jpg' alt='Avatar' style='width:5%;'><audio controls> <source src='hijon.m4a' type='audio/mpeg'></audio></div>" );
+                                    
+                                }
+                                //$( "#chatbox" ).append( "<img src='aslam.PNG' alt='Avatar' style='width:5%;'>" );
+                            } else if (response[i] == "Jenna") {
+                                if (response[i + 1] != "voicemessage") {
+                                $( "#chatbox" ).append( "<div class = 'test darker'><img src='jonathan.png' alt='Avatar' style='width:5%;'> " + response[i + 1] + "</div>" );
+                                } else {
+                                    $( "#chatbox" ).append( "<div class = 'test darker'><img src='jonathan.png' alt='Avatar' style='width:5%;'> <audio controls> <source src='jb.m4a' type='audio/mpeg'></audio></div>" );
+                                }
+                            }
+
+
+                        } 
+                    }
+                }
+                //console.log(window.location.href);
+                $("#button1").on("click", function() {
+                    if (window.location.href == "http://178.128.214.80/DECO3500/text.html?meg") {
+                        var name = "Meg";
+                    } else {
+                        var name = "Jenna"; 
+                    }
+                    var message = document.getElementById("message").value;
+                    var url = "response.php?name=" + name + "&message=" + message;
+                    xhttp.open("GET", url);
+                    xhttp.send(null);
+                    location.reload();
+                });
+                $("#button2").on("click", function() {
+                    if (window.location.href == "http://178.128.214.80/DECO3500/text.html?meg") {
+                        var name = "Meg";
+                    } else {
+                        var name = "Jenna"; 
+                    }
+                    var message = document.getElementById("message").value;
+                    var url = "response.php?name=" + name + "&message=voicemessage";
+                    xhttp.open("GET", url);
+                    xhttp.send(null);
+                    location.reload();
+                });           
+            });
+
+        </script>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+
+    </body>
+</html>
+
