@@ -87,7 +87,7 @@ __Final Prototype (high-fidelity-2)__ → Future design direction
 
 
 ### 2. Background & User Research
-Academic studies: [LINK]().
+Academic studies: [LINK](https://github.com/deco3500-2018/keizai/blob/master/Academic%20Studies).
 
 Existing solutions: [LINK]().
 
